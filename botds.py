@@ -1,10 +1,11 @@
 import discord
 from discord import app_commands
 import requests
+import os
 
-# === НАСТРОЙКИ ===
-DISCORD_TOKEN = "MTQzNzQxODg5NzU4MTAxOTI5Ng.G3_U0B.DzD0pkxzT2jCIzH5p9vqNIrO0EjSYcnq_AWuqw"
-LUARMOR_API_KEY = "d0b09e8811b852c671c2ee5b796ab3f5eb429147dc056163e25e"
+TOKEN = os.getenv("DISCORD_TOKEN")
+LUARMOR_API = os.getenv("LUARMOR_API_KEY")
+
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
@@ -45,3 +46,4 @@ async def hwid_reset(interaction: discord.Interaction, key: str):
 
 
 client.run(DISCORD_TOKEN)
+
