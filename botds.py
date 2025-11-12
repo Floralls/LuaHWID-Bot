@@ -3,14 +3,12 @@ from discord import app_commands
 import requests
 import os
 
-TOKEN = os.getenv("DISCORD_TOKEN")
-LUARMOR_API = os.getenv("LUARMOR_API_KEY")
-
+DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
+LUARMOR_API_KEY = os.getenv("LUARMOR_API_KEY")
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
-
 
 @client.event
 async def on_ready():
@@ -20,7 +18,6 @@ async def on_ready():
         print(f"🔧 Синхронизированы команды: {len(synced)}")
     except Exception as e:
         print(e)
-
 
 @tree.command(name="hwid", description="Сбросить HWID по ключу Luarmor")
 async def hwid_reset(interaction: discord.Interaction, key: str):
@@ -44,6 +41,4 @@ async def hwid_reset(interaction: discord.Interaction, key: str):
     except Exception as e:
         await interaction.followup.send(f"❌ Ошибка при обращении к API: {e}")
 
-
 client.run(DISCORD_TOKEN)
-
